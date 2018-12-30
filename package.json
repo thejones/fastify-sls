@@ -1,0 +1,33 @@
+{
+  "name": "fastify-sls",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap test/**/*.test.js",
+    "start": "fastify start -l info app.js",
+    "dev": "fastify start -l info -P app.js",
+    "start:offline": "sls offline start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^1.11.0",
+    "fastify-autoload": "^0.6.0",
+    "fastify-cli": "^0.27.0",
+    "fastify-plugin": "^1.2.0",
+    "fastify-rate-limit": "^1.0.0",
+    "serverless-offline": "^3.20.2",
+    "sls-http-fastify": "git+https://github.com/thejones/sls-http-fastify.git#develop"
+  },
+  "devDependencies": {
+    "eslint": "^5.11.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "tap": "^12.0.0"
+  }
+}

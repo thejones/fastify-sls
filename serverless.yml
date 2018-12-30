@@ -1,0 +1,19 @@
+service: serverless
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  profile: default
+  region: us-west-1
+
+plugins:
+  - serverless-offline
+
+functions:
+  api:
+    handler: sls-handler.fastifyApi
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+    environment:
+      SECRET_ACCESS_TOKEN: ${ssm:SECRET_ACCESS_TOKEN}
