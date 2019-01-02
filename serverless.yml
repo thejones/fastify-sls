@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   profile: default
-  region: us-west-1
+  region: us-east-2
 
 plugins:
   - serverless-offline
@@ -14,6 +14,8 @@ functions:
     handler: sls-handler.fastifyApi
     events:
       - http: ANY /
+          cors: true
       - http: 'ANY {proxy+}'
+          cors: true
     environment:
       SECRET_ACCESS_TOKEN: ${ssm:SECRET_ACCESS_TOKEN}

@@ -9,7 +9,7 @@
   "scripts": {
     "test": "tap test/**/*.test.js",
     "start": "fastify start -l info app.js",
-    "dev": "fastify start -l info -P app.js",
+    "dev": "fastify start -w -l info -P app.js",
     "start:offline": "sls offline start"
   },
   "keywords": [],
@@ -19,8 +19,14 @@
     "fastify": "^1.11.0",
     "fastify-autoload": "^0.6.0",
     "fastify-cli": "^0.27.0",
+    "fastify-helmet": "^3.0.0",
+    "fastify-http-proxy": "^0.8.0",
     "fastify-plugin": "^1.2.0",
     "fastify-rate-limit": "^1.0.0",
+    "fastify-redis": "^3.0.0",
+    "fastify-sensible": "^1.0.0",
+    "fastify-static": "^1.0.0",
+    "fastify-swagger": "^0.16.2",
     "serverless-offline": "^3.20.2",
     "sls-http-fastify": "git+https://github.com/thejones/sls-http-fastify.git#develop"
   },
@@ -28,6 +34,7 @@
     "eslint": "^5.11.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "prettier-eslint_d": "0.0.3",
     "tap": "^12.0.0"
   }
 }
