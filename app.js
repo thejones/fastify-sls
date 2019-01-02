@@ -10,22 +10,20 @@ const swagger = require('fastify-swagger');
 module.exports = (fastify, opts, next) => {
   // Place your custom code here!
   // Register plugins from the Ecosystem
-
-  fastify.register(sensible);
-  fastify.register(redis, { host: process.env.REDIS_URL });
-
-  // init
-
-  fastify.register(rateLimit, {
-    max: 10,
-    timeWindow: '1 minute',
-  });
-
   fastify.register(
     helmet,
     // Example of passing an option to x-powered-by middleware
     { hidePoweredBy: { setTo: 'PHP 4.2.0' } },
   );
+
+
+  fastify.register(sensible);
+  fastify.register(redis, { host: process.env.REDIS_URL });
+
+  fastify.register(rateLimit, {
+    max: 10,
+    timeWindow: '1 minute',
+  });
 
   // fastify.register(proxy, {
   //   upstream: process.env.INNER_API_BASE_URL,
@@ -33,22 +31,6 @@ module.exports = (fastify, opts, next) => {
   //   rejectUnauthorized: false,
   // });
 
-  // Swagger integration
-  fastify.register(swagger, {
-    swagger: {
-      info: {
-        title: 'Test swagger',
-        description: 'testing the fastify swagger api',
-        version: '0.1.0',
-      },
-      exposeRoute: true,
-      host: 'localhost',
-      schemes: ['http'],
-      consumes: ['application/json'],
-      produces: ['application/json'],
-      tags: [{ name: 'example', description: 'Example related end-points' }],
-    },
-  });
 
   // Do not touch the following lines
 
