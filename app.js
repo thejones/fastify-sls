@@ -52,8 +52,6 @@ module.exports = (fastify, opts, next) => {
 
   fastify.ready((err) => {
     if (err) throw err;
-
-    fastify.swagger();
     console.log(fastify.printRoutes());
   });
 
