@@ -1,6 +1,6 @@
 const path = require('path');
 const AutoLoad = require('fastify-autoload');
-// const proxy = require('fastify-http-proxy');
+const proxy = require('fastify-http-proxy');
 const helmet = require('fastify-helmet');
 const rateLimit = require('fastify-rate-limit');
 const redis = require('fastify-redis');
@@ -16,7 +16,6 @@ module.exports = (fastify, opts, next) => {
     { hidePoweredBy: { setTo: 'PHP 4.2.0' } },
   );
 
-
   fastify.register(sensible);
   fastify.register(redis, { host: process.env.REDIS_URL });
 
@@ -25,12 +24,15 @@ module.exports = (fastify, opts, next) => {
     timeWindow: '1 minute',
   });
 
-  // fastify.register(proxy, {
-  //   upstream: process.env.INNER_API_BASE_URL,
-  //   prefix: '/inner',
-  //   rejectUnauthorized: false,
-  // });
-
+  fastify.register(proxy, {
+    upstream: process.env.INNER_API_BASE_URL,
+    prefix: '/inner',
+    rejectUnauthorized: false,
+    async beforeHandler(request, reply) {
+      await request.setInnerAPIHeaders({ showMeTheMoney: 'yes' });
+      console.log(`REQUEST HEADERS ${JSON.stringify(request.headers)}`);
+    },
+  });
 
   // Do not touch the following lines
 
@@ -48,7 +50,6 @@ module.exports = (fastify, opts, next) => {
     dir: path.join(__dirname, 'services'),
     options: Object.assign({}, opts),
   });
-
 
   fastify.ready((err) => {
     if (err) throw err;

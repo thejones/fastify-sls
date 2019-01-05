@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^1.30.1",
     "fastify": "^1.11.0",
     "fastify-autoload": "^0.6.0",
     "fastify-cli": "^0.27.0",
@@ -27,6 +28,9 @@
     "fastify-sensible": "^1.0.0",
     "fastify-static": "^1.0.0",
     "fastify-swagger": "^0.16.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "request-promise-native": "^1.0.5",
     "serverless-offline": "^3.20.2",
     "sls-http-fastify": "git+https://github.com/thejones/sls-http-fastify.git#develop"
   },
